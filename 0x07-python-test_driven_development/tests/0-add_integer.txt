@@ -1,0 +1,44 @@
+# Import the module using __import__
+>>> add_integer = __import__('0-add_integer').add_integer
+
+# Test Case 1: Adding two integers
+>>> add_integer(1, 2)
+3
+
+# Test Case 2: Adding an integer and a negative integer
+>>> add_integer(100, -2)
+98
+
+# Test Case 3: Adding a single integer
+>>> add_integer(2)
+100
+
+# Test Case 4: Adding a float and a negative integer
+>>> add_integer(100.3, -2)
+98
+
+# Test Case 5: Handling a TypeError when adding an integer and a string
+>>> try:
+...     add_integer(4, "School")
+... except TypeError as e:
+...     print(e)
+b must be an integer
+
+# Test Case 6: Handling a TypeError when adding None
+>>> try:
+...     add_integer(None)
+... except TypeError as e:
+...     print(e)
+a must be an integer
+
+# Test Case 7: Handling OverflowError
+>>> add_integer(float('inf'), 2)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+# Test Case 8: converting float NaN to int errors
+>>> add_integer(float('NaN'), 2)
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer
