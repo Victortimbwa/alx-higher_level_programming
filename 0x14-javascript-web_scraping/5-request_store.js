@@ -1,24 +1,15 @@
 #!/usr/bin/node
-const fs = require('fs');
+
 const request = require('request');
-
-if (process.argv.length !== 4) {
-  console.error('Usage: node fetchAndStore.js <URL> <file_path>');
-  process.exit(1);
-}
-
+const fs = require('fs');
 const url = process.argv[2];
-const filePath = process.argv[3];
+const file = process.argv[3];
 
-request(url, (error, response, body) => {
-  if (error) {
-    console.error('Error:', error);
-  } else {
-    fs.writeFile(filePath, body, 'utf-8', (err) => {
-      if (err) {
-        console.error('Error writing to file:', err);
-      } else {
-        console.log(`Successfully saved the contents of ${url} to ${filePath}`);
+request(url, function (error, response, body) {
+  if (!error) {
+    fs.writeFile(file, body, 'utf8', function (error) {
+      if (error) {
+        console.log(error);
       }
     });
   }
